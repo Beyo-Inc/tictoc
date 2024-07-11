@@ -1,0 +1,58 @@
+name: tictoc
+repository: https://github.com/Beyo-Inc/tictoc
+
+packages:
+  - package/*
+
+command:
+  version:
+    includeCommitId: true
+  bootstrap:
+    hooks:
+      post: |
+        flutter pub run melos build_runner:build
+
+scripts:
+  lint:all:
+    run: |
+      flutter pub run melos run lint:analyze && \
+      flutter pub run melos run lint:format
+    description: Run all static analysis checks.
+  lint:analyze:
+    run: |
+      flutter pub run melos exec -- \
+      flutter analyze . --fatal-infos
+    description: |
+      Run `flutter analyze` for all packages.
+  lint:format:
+    run: |
+      flutter pub run melos exec -- \
+      dart format . --output=none --set-exit-if-changed
+    description: |
+      Run `dart format` for all packages.
+  test:all:
+    run: |
+      flutter pub run melos run test:unit
+  test:unit:
+    run: |
+      flutter pub run melos exec --depends-on="test" -- \
+      dart test &&
+      flutter pub run melos exec --depends-on="flutter_test" -- \
+      flutter test
+    packageFilters:
+      dirExists:
+        - test
+  build_runner:build:
+    run: |
+      flutter pub run melos exec --depends-on="build_runner" -- \
+      flutter pub run build_runner build --delete-conflicting-outputs
+    description: |
+      Run `flutter pub run build_runner watch` for all packages.
+  build_runner:watch:
+    run: |
+      flutter pub run melos build_runner:build &&
+      flutter pub run melos exec --depends-on="build_runner" -- \
+      flutter pub run build_runner watch --delete-conflicting-outputs
+    description: |
+      Run `flutter pub run build_runner watch` for all packages.
+ 
