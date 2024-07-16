@@ -5,7 +5,7 @@ issue_tracker: https://github.com/Beyo-Inc/tictoc/issues
 version: 0.0.1
 
 environment:
-  sdk: ^3.4.0
+  sdk: ^3.3.0
 
 dev_dependencies:
   melos: ^6.1.0
