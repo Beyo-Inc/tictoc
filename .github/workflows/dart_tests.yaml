@@ -1,0 +1,40 @@
+name: Dart Tests
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
+    types:
+      - assigned
+    paths-ignore:
+      - '**/.gitignore'
+      - '**/*.md'
+jobs:
+  dart_tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        sdk:
+          - stable
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+      - name: Check up SDK
+        run: dart --version
+      - name: Fetch Dependency Packages
+        run: dart pub get
+      - name: Run Melos Bootstrap
+        run: dart pub run melos bootstrap
+      - name: Run Lint
+        run: dart pub run melos lint:all
+      - name: Run Test
+        run: dart pub run melos test:all
