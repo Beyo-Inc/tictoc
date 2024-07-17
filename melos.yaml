@@ -2,7 +2,7 @@ name: tictoc
 repository: https://github.com/Beyo-Inc/tictoc
 
 packages:
-  - package/*
+  - packages/*
 
 command:
   version:
