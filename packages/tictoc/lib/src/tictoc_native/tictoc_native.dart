@@ -12,19 +12,19 @@ class TicToc implements TicTocInterface {
 
   static final TicToc instance = TicToc.instantiate();
 
-  int ntpOffset = 0;
+  int offset = 0;
   bool _synced = false;
 
   @override
   Timestamp now([DateTime? localTime]) {
     final DateTime now = localTime ?? DateTime.now();
-    final DateTime networkTime = now.add(Duration(milliseconds: ntpOffset));
+    final DateTime networkTime = now.add(Duration(milliseconds: offset));
     return Timestamp.fromDateTime(networkTime);
   }
 
   @override
   Future<Timestamp> sync([DateTime? localTime]) async {
-    ntpOffset = await NTP.getNtpOffset();
+    offset = await NTP.getNtpOffset();
     _synced = true;
     return now(localTime);
   }
