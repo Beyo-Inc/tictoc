@@ -11,7 +11,7 @@ void main() {
           const int mockOffset = 5000;
           final TicToc sut = TicToc();
           final DateTime localTime = DateTime.now();
-          sut.ntpOffset = mockOffset;
+          sut.offset = mockOffset;
 
           final Timestamp now = sut.now(localTime);
 
