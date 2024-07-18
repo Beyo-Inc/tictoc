@@ -16,18 +16,17 @@ class TicToc implements TicTocInterface {
   bool _synced = false;
 
   @override
-  Timestamp now() {
-    final DateTime localTime = DateTime.now();
-    final DateTime networkTime =
-        localTime.add(Duration(milliseconds: ntpOffset));
+  Timestamp now([DateTime? localTime]) {
+    final DateTime now = localTime ?? DateTime.now();
+    final DateTime networkTime = now.add(Duration(milliseconds: ntpOffset));
     return Timestamp.fromDateTime(networkTime);
   }
 
   @override
-  Future<Timestamp> sync() async {
+  Future<Timestamp> sync([DateTime? localTime]) async {
     ntpOffset = await NTP.getNtpOffset();
     _synced = true;
-    return now();
+    return now(localTime);
   }
 
   @override

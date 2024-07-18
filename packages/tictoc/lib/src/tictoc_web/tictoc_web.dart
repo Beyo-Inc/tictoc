@@ -16,15 +16,15 @@ class TicToc implements TicTocInterface {
   bool _synced = false;
 
   @override
-  Timestamp now() {
-    final DateTime localTime = DateTime.now();
+  Timestamp now([DateTime? localTime]) {
+    final DateTime now = localTime ?? DateTime.now();
     final DateTime networkTime =
-        localTime.add(Duration(milliseconds: worldTimeApiOffset));
+        now.add(Duration(milliseconds: worldTimeApiOffset));
     return Timestamp.fromDateTime(networkTime);
   }
 
   @override
-  Future<Timestamp> sync() async {
+  Future<Timestamp> sync([DateTime? localTime]) async {
     final LocationTime? locationTime =
         await EasyNetworkTime.getTimeNetwork(TimeLocation.asiaSeoul);
     if (locationTime == null) {
@@ -34,6 +34,7 @@ class TicToc implements TicTocInterface {
     worldTimeApiOffset =
         networkDateTime.difference(DateTime.now()).inMilliseconds;
     _synced = true;
+
     return now();
   }
 
