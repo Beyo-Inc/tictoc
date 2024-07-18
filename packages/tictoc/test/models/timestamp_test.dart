@@ -10,7 +10,7 @@ void main() {
       const int nanoseconds = 153152000;
 
       test(
-        '''Timestamp.fromDateTime은 DateTime타입으로부터 올바른 seconds와 nanoseconds를 변환해야 한다.''',
+        '''Timestamp.fromDateTime()은 DateTime 타입이 입력됐을 때, 올바른 seconds와 nanoseconds를 변환해야 한다.''',
         () {
           final DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(epoch);
           final Timestamp timestamp = Timestamp.fromDateTime(dateTime);
@@ -29,7 +29,7 @@ void main() {
       );
 
       test(
-        'Timestamp.add는 Duration타입으로부터 올바른 seconds와 nanoseconds를 추출하여 더해야 한다.',
+        '''Timestamp.add()는 Duration 타입이 입력됐을 때, 올바른 seconds와 nanoseconds를 추출하여 더해야 한다.''',
         () {
           final DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(epoch);
           final Timestamp timestamp = Timestamp.fromDateTime(dateTime);
