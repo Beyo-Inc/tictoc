@@ -49,7 +49,7 @@ void main() {
           );
           expect(
             addedTimestamp.nanoseconds,
-            equals(nanoseconds + (587 * 1000000) + (123 * 1000)),
+            equals(nanoseconds + (587 * 1000* 1000) + (123 * 1000)),
             reason: 'nanoseconds는 주어진 duration에서 nanoseconds를 추출하여 더해야 한다.',
           );
         },
