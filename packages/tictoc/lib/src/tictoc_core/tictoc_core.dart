@@ -1,2 +1,2 @@
 export 'models/models.dart';
-export 'tictoc_core.dart';
+export 'tictoc_interface.dart';
