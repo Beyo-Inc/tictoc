@@ -12,14 +12,13 @@ class TicToc implements TicTocInterface {
 
   static final TicToc instance = TicToc.instantiate();
 
-  int worldTimeApiOffset = 0;
+  int offset = 0;
   bool _synced = false;
 
   @override
   Timestamp now([DateTime? localTime]) {
     final DateTime now = localTime ?? DateTime.now();
-    final DateTime networkTime =
-        now.add(Duration(milliseconds: worldTimeApiOffset));
+    final DateTime networkTime = now.add(Duration(milliseconds: offset));
     return Timestamp.fromDateTime(networkTime);
   }
 
@@ -31,8 +30,7 @@ class TicToc implements TicTocInterface {
       throw Exception('locationTime is not allowed to be null');
     }
     final DateTime networkDateTime = locationTime.dateTime;
-    worldTimeApiOffset =
-        networkDateTime.difference(DateTime.now()).inMilliseconds;
+    offset = networkDateTime.difference(DateTime.now()).inMilliseconds;
     _synced = true;
 
     return now();
