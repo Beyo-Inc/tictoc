@@ -18,8 +18,7 @@ class TicToc implements TicTocInterface {
   @override
   Timestamp now([DateTime? localTime]) {
     final DateTime now = localTime ?? DateTime.now();
-    final DateTime networkTime =
-        now.add(Duration(milliseconds: offset));
+    final DateTime networkTime = now.add(Duration(milliseconds: offset));
     return Timestamp.fromDateTime(networkTime);
   }
 
@@ -31,8 +30,7 @@ class TicToc implements TicTocInterface {
       throw Exception('locationTime is not allowed to be null');
     }
     final DateTime networkDateTime = locationTime.dateTime;
-    offset =
-        networkDateTime.difference(DateTime.now()).inMilliseconds;
+    offset = networkDateTime.difference(DateTime.now()).inMilliseconds;
     _synced = true;
 
     return now();
