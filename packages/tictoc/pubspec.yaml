@@ -8,6 +8,7 @@ environment:
   sdk: ^3.3.0
 
 dependencies:
+  easy_network_time: ^1.0.3
   freezed_annotation: ^2.4.4
   ntp: ^2.0.0
 
