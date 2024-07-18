@@ -27,14 +27,15 @@ class TicToc implements TicTocInterface {
   Future<Timestamp> sync([DateTime? localTime]) async {
     final LocationTime? locationTime =
         await EasyNetworkTime.getTimeNetwork(TimeLocation.asiaSeoul);
-    // TODO(team): throw `locationTime is not allowed to be null` 할지 말지 결정
-    if (locationTime != null) {
-      final DateTime networkDateTime = locationTime.dateTime;
-      worldTimeApiOffset =
-          networkDateTime.difference(DateTime.now()).inMilliseconds;
-      _synced = true;
+    if (locationTime == null) {
+      throw Exception('locationTime is not allowed to be null');
     }
-    return now(localTime);
+    final DateTime networkDateTime = locationTime.dateTime;
+    worldTimeApiOffset =
+        networkDateTime.difference(DateTime.now()).inMilliseconds;
+    _synced = true;
+
+    return now();
   }
 
   @override
