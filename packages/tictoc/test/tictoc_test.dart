@@ -3,10 +3,10 @@ import 'package:tictoc/tictoc.dart';
 
 void main() {
   group(
-    '[TicToc Native Test]',
+    '[TicToc Test]',
     () {
       test(
-        'now()를 호출하면, ntpOffset을 반영한 현재 시간을 반환해야 한다.',
+        'now()를 호출하면, offset을 반영한 현재 시간을 반환해야 한다.',
         () {
           const int mockOffset = 5000;
           final TicToc sut = TicToc();
@@ -21,7 +21,7 @@ void main() {
           expect(
             now.dateTime,
             expectedTime,
-            reason: 'ntpOffset이 반영된 시간을 반환해야 한다.',
+            reason: 'offset이 반영된 시간을 반환해야 한다.',
           );
         },
       );
