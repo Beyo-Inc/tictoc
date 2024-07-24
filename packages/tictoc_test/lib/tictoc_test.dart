@@ -1,1 +1,1 @@
-export 'mock_tictoc.dart';
+export 'src/mock_tictoc.dart';
