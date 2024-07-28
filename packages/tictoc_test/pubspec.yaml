@@ -1,11 +1,16 @@
 name: tictoc_test
 description: A Dart package for testing tictoc(Dart network time protocol package by beyo).
+publish_to: none # TODO(team) Remove this line if tic_toc is published to pub.dev
 repository: https://github.com/Beyo-Inc/tictoc
 issue_tracker: https://github.com/Beyo-Inc/tictoc/issues
 version: 0.0.1
 
 environment:
   sdk: ^3.3.0
+
+dependencies:
+  tictoc:
+    path: ../tictoc
 
 dev_dependencies:
   melos: ^6.1.0
