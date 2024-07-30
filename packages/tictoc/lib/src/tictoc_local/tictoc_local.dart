@@ -14,16 +14,16 @@ class TicTocLocal implements TicTocInterface {
   bool _synced = false;
 
   @override
-  Timestamp now() {
-    final DateTime now = DateTime.now();
+  Timestamp now([DateTime? localTime]) {
+    final DateTime now = localTime ?? DateTime.now();
     final DateTime networkTime = now.add(Duration(milliseconds: _offset));
     return Timestamp.fromDateTime(networkTime);
   }
 
   @override
-  Future<Timestamp> sync() async {
+  Future<Timestamp> sync([DateTime? localTime]) async {
     _synced = true;
-    return now();
+    return now(localTime);
   }
 
   set offset(int offset) {
