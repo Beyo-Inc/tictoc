@@ -11,6 +11,7 @@ class MockTictoc implements TicTocInterface {
     _localTime = localTime ?? DateTime.now();
   }
 
+  @override
   late final int offset;
   bool _synced = false;
   late final DateTime _localTime;
