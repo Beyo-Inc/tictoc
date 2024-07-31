@@ -2,7 +2,7 @@ name: tictoc
 description: Dart network time protocol package by beyo
 repository: https://github.com/Beyo-Inc/tictoc
 issue_tracker: https://github.com/Beyo-Inc/tictoc/issues
-version: 0.0.1
+version: 0.1.0
 
 environment:
   sdk: ^3.3.0
